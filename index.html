@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mom's Morning Rush</title>
     <style>
-        body { font-family: 'Comic Sans MS', sans-serif; text-align: center; background: #fff0f5; padding: 20px; }
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; text-align: center; background: #fff9c4; padding: 20px; color: #5d4037; }
         
         #game-container {
             position: relative;
             display: inline-block;
-            border: 10px solid #ff69b4;
-            border-radius: 20px;
+            border: 8px solid #ff9800;
+            border-radius: 25px;
             overflow: hidden;
             background-color: white;
             line-height: 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* The Background Room */
+        /* Bright, Colorful Living Room */
         #room-bg {
             width: 100%;
             max-width: 800px;
@@ -25,52 +26,59 @@
             display: block;
         }
 
-        /* The Hidden Items */
+        /* Hidden Items - No borders this time! */
         .item {
             position: absolute;
             cursor: pointer;
             z-index: 100;
             transition: transform 0.2s;
-            /* DEBUG BORDER: Remove the next line once you're happy! */
-            outline: 2px solid red; 
+            opacity: 0.9; /* Slightly transparent to blend in */
         }
 
-        .item:hover { transform: scale(1.3); }
+        .item:hover { transform: scale(1.2); opacity: 1; }
 
-        /* Adjusting positions so they sit on furniture */
-        #keys { top: 75%; left: 15%; width: 50px; }
-        #phone { top: 45%; left: 75%; width: 40px; }
-        #umbrella { top: 25%; left: 5%; width: 80px; }
-        #card { top: 60%; left: 45%; width: 50px; }
+        /* Placements for the Living Room */
+        #keys { top: 82%; left: 12%; width: 35px; }       /* Near the rug/floor */
+        #phone { top: 58%; left: 78%; width: 30px; }      /* On the sofa/side table */
+        #umbrella { top: 35%; left: 5%; width: 70px; }     /* Leaning against the wall */
+        #card { top: 65%; left: 42%; width: 45px; }       /* On the coffee table area */
 
-        #checklist { margin-top: 20px; font-size: 22px; }
-        .found { text-decoration: line-through; color: #ff69b4; opacity: 0.3; }
-        .win-banner { display: none; font-size: 30px; color: #ff1493; font-weight: bold; margin-top: 15px; }
+        #checklist { margin-top: 25px; font-size: 24px; background: white; display: inline-block; padding: 10px 30px; border-radius: 50px; }
+        .found { text-decoration: line-through; color: #bdbdbd; opacity: 0.5; }
+        .win-banner { display: none; font-size: 35px; color: #e91e63; font-weight: bold; margin-top: 20px; animation: pop 0.5s infinite alternate; }
+
+        @keyframes pop {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
     </style>
 </head>
 <body>
 
-    <h1>🏃‍♀️ Mom is late! Find her 4 things!</h1>
+    <h1>🌸 Mom's Morning Rush 🌸</h1>
+    <p style="font-size: 18px;">Find Mom's things before she leaves for work!</p>
 
     <div id="game-container">
-        <!-- Stable Background Image -->
-        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" id="room-bg">
+        <!-- Colorful Living Room Background -->
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800" id="room-bg">
 
-        <!-- Hidden Items (Using stable Flaticon-style links) -->
+        <!-- Hidden Items -->
         <img src="https://cdn-icons-png.flaticon.com/512/658/658145.png" id="keys" class="item" onclick="collect('keys')">
         <img src="https://cdn-icons-png.flaticon.com/512/0/191.png" id="phone" class="item" onclick="collect('phone')">
         <img src="https://cdn-icons-png.flaticon.com/512/3050/3050085.png" id="umbrella" class="item" onclick="collect('umbrella')">
         <img src="https://cdn-icons-png.flaticon.com/512/12104/12104331.png" id="card" class="item" onclick="collect('card')">
     </div>
 
+    <br>
+
     <div id="checklist">
-        <span id="label-keys">🔑 Keys</span> | 
-        <span id="label-phone">📱 Smartphone</span> | 
-        <span id="label-umbrella">☂️ Umbrella</span> | 
+        <span id="label-keys">🔑 Keys</span> &nbsp; | &nbsp;
+        <span id="label-phone">📱 Smartphone</span> &nbsp; | &nbsp;
+        <span id="label-umbrella">☂️ Umbrella</span> &nbsp; | &nbsp;
         <span id="label-card">💳 EasyCard</span>
     </div>
 
-    <div id="win-banner" class="win-banner">💖 MOM IS READY! YOU WIN! 💖</div>
+    <div id="win-banner" class="win-banner">✨ YOU SAVED THE DAY! ✨</div>
 
     <script>
         let foundItems = 0;
@@ -80,13 +88,16 @@
             const label = document.getElementById('label-' + id);
 
             if (element.style.visibility !== 'hidden') {
-                element.style.visibility = 'hidden'; // Hide the item
-                label.classList.add('found'); // Cross it off the list
+                element.style.visibility = 'hidden'; 
+                label.classList.add('found'); 
                 foundItems++;
 
                 if (foundItems === 4) {
                     document.getElementById('win-banner').style.display = 'block';
-                    alert("Awesome! Now Mom won't be late for school!");
+                    // Delay the alert so they see the win banner first
+                    setTimeout(() => {
+                        alert("Great job! Mom is ready to go!");
+                    }, 500);
                 }
             }
         }
