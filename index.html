@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mom's Morning Rush - Find the Items!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>Help Mom! She's late for work! 🏃‍♀️</h1>
+        <p>Find the 4 items hidden in the room.</p>
+        
+        <div id="game-canvas">
+            <!-- The Background Room -->
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/13270086405913788324_0" id="bg-room">
+
+            <!-- Hidden Items -->
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/13314773241005171841_1" class="hidden-item" id="item-keys" onclick="itemFound('keys')">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/14325635654578508072_0" class="hidden-item" id="item-smartphone" onclick="itemFound('smartphone')">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/15342668476156268366_1" class="hidden-item" id="item-umbrella" onclick="itemFound('umbrella')">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/2812850931677094335_0" class="hidden-item" id="item-easycard" onclick="itemFound('easycard')">
+        </div>
+
+        <div id="ui-panel">
+            <div id="checklist">
+                <span id="label-keys" class="check-item">🔑 Keys</span>
+                <span id="label-smartphone" class="check-item">📱 Smartphone</span>
+                <span id="label-umbrella" class="check-item">☂️ Umbrella</span>
+                <span id="label-easycard" class="check-item">💳 EasyCard</span>
+            </div>
+            <button id="restart-btn" onclick="location.reload()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
